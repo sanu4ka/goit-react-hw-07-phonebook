@@ -2,12 +2,14 @@ import css from './App.module.css';
 import ContactForm from './ContactForm/ContactForm';
 import Filter from './Filter/Filter';
 import ContactList from './ContactList/ContactList';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
 import { fetchContacts } from '../Redux/contactsOperation';
+import { Loader } from "./Loader/Loader";
 
 export default function App() {
   const dispatch = useDispatch();
+  const loadStatus = useSelector(state => state.contacts.isLoading);
 
   useEffect(() => {
     dispatch(fetchContacts());
@@ -19,6 +21,7 @@ export default function App() {
       <ContactForm />
       <h2>Contacts</h2>
       <Filter />
+      {loadStatus && <Loader />}
       <ContactList />
     </div>
   );

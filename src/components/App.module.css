@@ -1,4 +1,5 @@
 .mainModule {
+  position: relative;
   display: inline-flex;
   flex-direction: column;
   gap: 25px;
